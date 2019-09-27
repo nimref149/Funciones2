@@ -71,7 +71,7 @@ char getNumeroAleatorio(int desde , int hasta, int iniciar);
 int esNumerico(char str[]) ;
 
 void getString(char mensaje[],char input[]);
-int getStringNumeros(char mensaje[],int* input,int lowLimit,int hiLimit);
+int getInt3(char mensaje[],int* input,int lowLimit,int hiLimit);
 
 
 

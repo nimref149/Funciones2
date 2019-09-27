@@ -12,8 +12,8 @@ islower() //valida si es minuscula
 toupper();para pasar el contenido de una variable tipo char ( char letra ) o array de cadena ( char cad[20] ), a mayusculas.
 tolower();para pasar el contenido de una variable tipo char ( char letra ) o array de cadena ( char cad[20] ), a minusculas.
 */
-void getIntt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit)//con rango
-{   char numero[10];
+void getIntt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit)//con rango sin validacion de letra
+{
     printf("%s\n",message);
     scanf("%d",input);
 
@@ -24,7 +24,7 @@ void getIntt(int* input,char message[],char eMessage[], int lowLimit, int hiLimi
     }
 
 }
-int getInt2(char message[],int lowLimit, int hiLimit)//con rango
+int getInt2(char message[],int lowLimit, int hiLimit)//con rango sin validacion de letra
 {
     int numero;
     int numero2;
@@ -70,7 +70,7 @@ int getFloatt(float* input,char message[],char eMessage[], float lowLimit, float
     return 1;
 }
 
-int getCharr(char* input,char message[],char eMessage[], char lowLimit, char hiLimit)//mejorado
+int getCharr(char* input,char message[],char eMessage[], char lowLimit, char hiLimit)//mejorado con validacion de letra y rango
 {
     char auxInput;
     int retorno=0;
@@ -169,8 +169,8 @@ int esNumerico(char str[])
    return 1;
 }
 
-
-int getStringNumeros(char mensaje[],int* input,int lowLimit,int hiLimit)//usa es numerico,geytstring y nada mas
+//getStringNumeros
+int getInt3(char mensaje[],int* input,int lowLimit,int hiLimit)//usa 2 funciones,esNumerico,getstring y nada mas, es mejor que getInt.con validacion de rango y numero
 {
     char aux[256];
     int auxNumero;
