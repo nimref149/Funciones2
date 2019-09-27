@@ -3,15 +3,26 @@
 #include <stdlib.h>
 #include "funciones.h"
 #include <time.h>
+#include <ctype.h>
+/**
+isalpha() //Valida si es una letra
+isdigit() //Valida si es un numero
+isupper() //valida si es mayuscula
+islower() //valida si es minuscula
+toupper();para pasar el contenido de una variable tipo char ( char letra ) o array de cadena ( char cad[20] ), a mayusculas.
+tolower();para pasar el contenido de una variable tipo char ( char letra ) o array de cadena ( char cad[20] ), a minusculas.
+*/
 void getIntt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit)//con rango
-{
+{   char numero[10];
     printf("%s\n",message);
     scanf("%d",input);
+
     while(*input<lowLimit || *input>hiLimit)
     {
         printf("%s\n",eMessage);
         scanf("%d",input);
     }
+
 }
 int getInt2(char message[],int lowLimit, int hiLimit)//con rango
 {
@@ -19,6 +30,7 @@ int getInt2(char message[],int lowLimit, int hiLimit)//con rango
     int numero2;
     printf("%s\n",message);
     scanf("%d",&numero);
+
     numero2=esNumerico(numero);
     printf("el numero es %d",numero2);
     while(numero<lowLimit || numero>hiLimit)
@@ -58,10 +70,39 @@ int getFloatt(float* input,char message[],char eMessage[], float lowLimit, float
     return 1;
 }
 
-int getCharr(char* input,char message[],char eMessage[], char lowLimit, char hiLimit)
+int getCharr(char* input,char message[],char eMessage[], char lowLimit, char hiLimit)//mejorado
+{
+    char auxInput;
+    int retorno=0;
+    printf("%s",message);
+    fflush(stdin);
+    scanf("%c",&auxInput);
+    auxInput=tolower(auxInput);
+    if((isalpha(auxInput))!=0)
+    {
+        if(auxInput<lowLimit || auxInput>hiLimit)
+        {
+            printf("%s.\n",eMessage);
+        }
+        else
+        {
+            *input=auxInput;
+            retorno=1;
+        }
+    }
+    else
+    {
+        printf("Error, Debe ingresar una letra.\n",eMessage);
+    }
+    return retorno;
+}
+/*
+int getCharr(char* input,char message[],char eMessage[], char lowLimit, char hiLimit)//mejorado
 {
 
+    //char auxInput;
     printf("%s\n",message);
+    fflush(stdin);
     scanf("%c",input);
     if(*input<lowLimit || *input>hiLimit)
     {
@@ -71,6 +112,8 @@ int getCharr(char* input,char message[],char eMessage[], char lowLimit, char hiL
     return 1;
 
 }
+*/
+
 int getStringg(char* input,char message[],char eMessage[], int lowLimit, int hiLimit)
 {
 
@@ -127,7 +170,31 @@ int esNumerico(char str[])
 }
 
 
-
+int getStringNumeros(char mensaje[],int* input,int lowLimit,int hiLimit)//usa es numerico,geytstring y nada mas
+{
+    char aux[256];
+    int auxNumero;
+    getString(mensaje,aux);
+    int retorno=0;
+    if(esNumerico(aux))
+    {
+        auxNumero=atoi(aux);
+        if(auxNumero<lowLimit || auxNumero>hiLimit)
+        {
+            printf("Error, fuera de rango\n");
+        }
+        else
+        {
+            *input=atoi(aux);
+            retorno=1;
+        }
+    }
+    else
+    {
+        printf("Error, solo se permite valor numerico\n");
+    }
+    return retorno;
+}
 
 
 
